@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="btn_tile">#99a860</color>
+    <color name="btn_tile_pressed">#bacc74</color>
+    
+    <color name="btn_new">#00b4ff</color>
+    <color name="btn_new_pressed">#4cc7fb</color>
+    
+    <color name="btn_close">#fa5454</color>
+    <color name="btn_close_pressed">#f77878</color>
+    
+    <color name="bg_dark">#5b5b5b</color>
+    <color name="bg">#5b5b5b</color>
+    
+</resources>
