@@ -23,7 +23,7 @@
                 android:gravity="center"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@android:color/white"
-                android:textSize="24sp" />
+                android:textSize="30sp" />
 
         </TableRow>
 
@@ -70,7 +70,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/btn_tile"
                         android:textColor="@android:color/white"
-                        android:textSize="36sp" />
+                        android:textSize="88sp" />
 
                 </TableRow>
 
@@ -93,7 +93,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/btn_tile"
                         android:textColor="@android:color/white"
-                        android:textSize="36sp" />
+                        android:textSize="88sp" />
 
                 </TableRow>
 
@@ -116,7 +116,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/btn_tile"
                         android:textColor="@android:color/white"
-                        android:textSize="36sp" />
+                        android:textSize="88sp" />
 
                 </TableRow>
 
@@ -159,7 +159,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/btn_tile"
                         android:textColor="@android:color/white"
-                        android:textSize="36sp" />
+                        android:textSize="88sp" />
 
                 </TableRow>
 
@@ -182,7 +182,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/btn_tile"
                         android:textColor="@android:color/white"
-                        android:textSize="36sp" />
+                        android:textSize="88sp" />
 
                 </TableRow>
 
@@ -205,7 +205,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/btn_tile"
                         android:textColor="@android:color/white"
-                        android:textSize="36sp" />
+                        android:textSize="88sp" />
 
                 </TableRow>
 
@@ -248,7 +248,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/btn_tile"
                         android:textColor="@android:color/white"
-                        android:textSize="36sp" />
+                        android:textSize="88sp" />
 
                 </TableRow>
 
@@ -271,7 +271,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/btn_tile"
                         android:textColor="@android:color/white"
-                        android:textSize="36sp" />
+                        android:textSize="88sp" />
 
                 </TableRow>
 
@@ -295,7 +295,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/btn_tile"
                         android:textColor="@android:color/white"
-                        android:textSize="36sp" />
+                        android:textSize="88sp" />
 
                 </TableRow>
 
@@ -324,7 +324,6 @@
                 android:layout_height="fill_parent"
                 android:background="@android:color/transparent"
                 android:text="NEW"
-                android:textAllCaps="true"
                 android:textColor="@drawable/btn_new"
                 android:textSize="24sp" />
 
@@ -342,7 +341,6 @@
                 android:layout_height="fill_parent"
                 android:background="@android:color/transparent"
                 android:text="CLOSE"
-                android:textAllCaps="true"
                 android:textColor="@drawable/btn_close"
                 android:textSize="24sp" />
 
