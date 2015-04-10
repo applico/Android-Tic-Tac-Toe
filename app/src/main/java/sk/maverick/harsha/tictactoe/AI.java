@@ -76,101 +76,10 @@ public class AI {
             }
         }
 
-
-
-
-
-
-         /*
-                //Defense Moves
-
-                if(array[0] == 'x' & array[1] == 'x' & array[2] == 'i')
-                    index= 2;
-
-                if(array[0] == 'x' & array[2] == 'x' & array[1] == 'i')
-                    index = 1;
-
-                if(array[1] == 'x' & array[2] == 'x' & array[0] == 'i')
-                    index = 0;
-
-
-                if(array[3] == 'x' & array[4] == 'x' & array[5] == 'i')
-                    index = 5;
-
-                if(array[3] == 'x' & array[5] == 'x' & array[4] == 'i')
-                    index = 4;
-
-                if(array[4] == 'x' & array[5] == 'x' & array[3] == 'i')
-                    index = 3;
-
-                if(array[6] == 'x' & array[7] == 'x' & array[8] == 'i')
-                    index = 8;
-
-                if(array[6] == 'x' & array[8] == 'x' & array[7] == 'i' )
-                    index = 7;
-
-                if(array[7] == 'x' & array[8] == 'x' & array[6] == 'i')
-                    index = 6;
-
-
-
-                if( array[0] == 'x' & array[3] == 'x' & array[6] == 'i' )
-                    index =  6;
-
-                if( array[0] == 'x' & array[6] == 'x' & array[3] == 'i' )
-                    index =  3;
-
-                if ( array[3] == 'x' & array[6] == 'x' & array[0] == 'i')
-                    index =  0;
-
-
-                if ( array[1] == 'x' & array[4] == 'x' & array[7] == 'i' )
-                    index =  7;
-
-                if ( array[1] == 'x' & array[7] == 'x' & array[4] == 'i')
-                    index =  4;
-
-                if ( array[4] == 'x' & array[7] == 'x' & array[1] == 'i' )
-                    index =  1;
-
-
-                if ( array[2] == 'x' & array[5] == 'x' & array[8] == 'i')
-                    index =  8;
-
-                if ( array[2] == 'x' & array[8] == 'x' & array[5] == 'i')
-                    index =  5;
-
-                if ( array[5] == 'x' & array[8] == 'x' & array[2] == 'i' )
-                    index =  2;
-
-
-
-
-                if ( array[0] == 'x' & array[4] == 'x' & array[8] == 'i' )
-                    index =  8;
-
-                if ( array[0] == 'x' & array[8] == 'x' & array[4] == 'i' )
-                    index =  4;
-
-                if ( array[4] == 'x' & array[8] == 'x' & array[0] == 'i' )
-                    index =  0;
-
-
-                if ( array[2] == 'x' & array[4] == 'x' & array[6] == 'i')
-                    index =  6;
-
-                if ( array[2] == 'x' & array[6] == 'x' & array[4] == 'i' )
-                    index =  4;
-
-                if ( array[4] == 'x' & array[6] == 'x' & array[2] == 'i')
-                    index =  2;
-
-            }
-
-        */
-
         return index;
     }
+
+
 
     private int defenseMove(char[] array) {
         int index = 0;
