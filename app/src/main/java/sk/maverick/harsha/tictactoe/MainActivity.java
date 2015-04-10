@@ -175,7 +175,7 @@ public class MainActivity extends Activity {
                     gameDone = true;
                 }
                 if (array[0] == 'o' & array[1] == 'o' & array[2] == 'o') {
-                    Toast.makeText(this, "first row X win", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "first row O win", Toast.LENGTH_SHORT).show();
                     winner = 'o';
                     gameDone = true;
                 }
