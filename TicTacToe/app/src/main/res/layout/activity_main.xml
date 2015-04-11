@@ -1,0 +1,163 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:background="#00ffffff">
+
+
+    <LinearLayout
+        android:background="#00ffffff"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left|center_horizontal"
+        android:gravity="center_vertical|center_horizontal">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/restartGame"
+            android:src="@drawable/res"
+            android:clickable="true"/>
+
+        <ImageView
+            android:layout_marginLeft="15px"
+            android:layout_marginRight="15px"
+            android:id="@+id/playerSelectionX"
+            android:layout_width="150px"
+            android:layout_height="150px"
+            android:src="@drawable/x" />
+
+        <Switch
+            android:layout_marginLeft="15px"
+            android:layout_marginRight="15px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/playerSelection"
+            android:layout_gravity="center_vertical"
+            android:checked="false" />
+
+        <ImageView
+            android:layout_marginLeft="15px"
+            android:layout_marginRight="15px"
+            android:id="@+id/playerSelection0"
+            android:layout_width="150px"
+            android:layout_height="150px"
+            android:src="@drawable/o" />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/qa"
+            android:id="@+id/help"
+            android:clickable="true"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="70px"
+        android:orientation="vertical"
+        android:layout_width="700px"
+        android:layout_height="700px"
+        android:layout_gravity="center_horizontal"
+        android:background="#fe000000">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="230px"
+            android:background="#fe000000">
+            <ImageView
+                android:id="@+id/position00"
+                android:layout_width="230px"
+                android:layout_height="230px"
+                android:src="@drawable/blank"
+                android:layout_marginRight="5dp"
+                android:clickable="true" />
+            <ImageView
+                android:layout_marginRight="5dp"
+                android:id="@+id/position01"
+                android:layout_width="230px"
+                android:layout_height="230px"
+                android:src="@drawable/blank"
+                android:clickable="true" />
+            <ImageView
+                android:id="@+id/position02"
+                android:layout_width="230px"
+                android:layout_height="230px"
+                android:src="@drawable/blank"
+                android:clickable="true" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="230px"
+            android:background="#fe000000">
+            <ImageView
+                android:id="@+id/position10"
+                android:layout_width="230px"
+                android:layout_height="230px"
+                android:src="@drawable/blank"
+                android:layout_marginRight="5dp"/>
+            <ImageView
+                android:layout_marginRight="5dp"
+                android:id="@+id/position11"
+                android:layout_width="230px"
+                android:layout_height="230px"
+                android:src="@drawable/blank" />
+            <ImageView
+                android:id="@+id/position12"
+                android:layout_width="230px"
+                android:layout_height="230px"
+                android:src="@drawable/blank" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="230px"
+            android:background="#fe000000">
+            <ImageView
+                android:id="@+id/position20"
+                android:layout_width="230px"
+                android:layout_height="230px"
+                android:src="@drawable/blank"
+                android:layout_marginRight="5dp"/>
+            <ImageView
+                android:layout_marginRight="5dp"
+                android:id="@+id/position21"
+                android:layout_width="230px"
+                android:layout_height="230px"
+                android:src="@drawable/blank" />
+            <ImageView
+                android:id="@+id/position22"
+                android:layout_width="230px"
+                android:layout_height="230px"
+                android:src="@drawable/blank" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/Result"
+        android:layout_gravity="center_horizontal" />
+
+
+</LinearLayout>
+</ScrollView>
