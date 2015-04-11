@@ -16,6 +16,7 @@ public class MainActivity extends Activity {
 
     ImageButton image[][] = new ImageButton[3][3];
     Button newgame;
+    String Tag = "sk.maverick.harsha.tictactoe.MainActivity";
     char winner, array[];
     public int count = 0;
     private char selected;
@@ -142,7 +143,7 @@ public class MainActivity extends Activity {
         count = count+1;
         selectPicture(img);
         array[index] = selected;
-        Log.v("Human Move", "Move made " + index);
+        Log.v(Tag, "Move made " + index);
         checkForWin();
 
         if (count < 8 ){
@@ -156,7 +157,7 @@ public class MainActivity extends Activity {
             int temp_index;
 
                     temp_index= computer.aiMove(array, count);
-                    Log.v("Computer Move ", "" + temp_index);
+                    Log.v(Tag, "" + temp_index);
                     selectPicture(image[temp_index / 3][temp_index % 3]);
                     array[temp_index] = selected;
                     checkForWin();
