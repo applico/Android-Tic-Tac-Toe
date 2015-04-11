@@ -157,7 +157,7 @@ public class AI {
         else if ( array[2] == 'x' & array[4] == 'x' & array[6] == 'i')
             index =  6;
 
-        else if ( array[2] == 'x' & array[6] == 'x' & array[2] == 'i' )
+        else if ( array[2] == 'x' & array[6] == 'x' & array[4] == 'i' )
             index =  4;
 
         else if ( array[4] == 'x' & array[6] == 'x' & array[2] == 'i')
