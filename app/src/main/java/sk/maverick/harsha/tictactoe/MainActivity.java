@@ -10,7 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
-
+import android.os.Handler;
+import android.os.Message;
 
 public class MainActivity extends Activity {
 
@@ -18,12 +19,23 @@ public class MainActivity extends Activity {
     Button newgame;
     String Tag = "sk.maverick.harsha.tictactoe.MainActivity";
     char winner, array[];
-    public int count = 0;
+    public int count = 0, temp_index;
     private char selected;
     boolean gameDone = false;
 
     AI computer;
     Scorer score = new Scorer();
+    
+     Handler handle = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+
+            selectPicture(image[temp_index / 3][temp_index % 3]);
+            array[temp_index] = selected;
+            checkForWin();
+        }
+    };
+
 
 
     @Override
@@ -154,13 +166,18 @@ public class MainActivity extends Activity {
 
     public void computerMove() {
             count = count+1;
-            int temp_index;
+        Runnable run = new Runnable() {
+            @Override
+            public void run() {
+                temp_index= computer.aiMove(array, count);
+                Log.v("Computer Move ", "" + temp_index);
+            }
 
-                    temp_index= computer.aiMove(array, count);
-                    Log.v(Tag, "" + temp_index);
-                    selectPicture(image[temp_index / 3][temp_index % 3]);
-                    array[temp_index] = selected;
-                    checkForWin();
+        };
+
+        handle.sendEmptyMessage(0);
+        Thread aiRequestThread = new Thread(run);
+        aiRequestThread.start();
 
     }
 
