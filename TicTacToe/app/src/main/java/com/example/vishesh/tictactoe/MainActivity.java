@@ -27,12 +27,12 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         List<Point> availablePoints;
 
 
-        public boolean isGameOver() {
+        public boolean checkIfGameOver() {
             //Game is over is someone has won, or board is full (draw)
-            return (hasXWon() || hasOWon() || getAvailableStates().isEmpty());
+            return (checkIfXWon() || checkIfOWon() || getAvailableStates().isEmpty());
         }
 
-        public boolean hasXWon() {
+        public boolean checkIfXWon() {
             if ((board[0][0] == board[1][1] && board[0][0] == board[2][2] && board[0][0] == 1) || (board[0][2] == board[1][1] && board[0][2] == board[2][0] && board[0][2] == 1)) {
                 //System.out.println("X Diagonal Win");
                 return true;
@@ -47,7 +47,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
             return false;
         }
 
-        public boolean hasOWon() {
+        public boolean checkIfOWon() {
             if ((board[0][0] == board[1][1] && board[0][0] == board[2][2] && board[0][0] == 2) || (board[0][2] == board[1][1] && board[0][2] == board[2][0] && board[0][2] == 2)) {
                 // System.out.println("O Diagonal Win");
                 return true;
@@ -75,11 +75,11 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
             return availablePoints;
         }
 
-        public void placeAMove(Point point, int player) {
+        public void makeAMove(Point point, int player) {
             board[point.x][point.y] = player;   //player = 1 for X, 2 for O
         }
 
-        public Point returnBestMove() {
+        public Point returnBest() {
             int MAX = -100000;
             int best = -1;
 
@@ -223,9 +223,9 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
         public void displayResult() {
             String r;
-            if (hasXWon()) {
+            if (checkIfXWon()) {
                 r="Unfortunately, you lost!";
-            } else if (hasOWon()) {
+            } else if (checkIfOWon()) {
                 r="You win!";
             } else {
                 r="It's a draw!";
@@ -241,7 +241,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                             if(temp==1)
                             {
                                 Point p = new Point(rand.nextInt(3), rand.nextInt(3));
-                                placeAMove(p, 1);
+                                makeAMove(p, 1);
                                 updateBoard(p,tempInverse(temp));
                             }
                         }
@@ -265,15 +265,15 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
         }
 
-        public void callMinimax(int depth, int turn){
+        public void callM(int depth, int turn){
             rootsChildrenScores = new ArrayList<>();
             minimax(depth, turn);
         }
 
         public int minimax(int depth, int turn) {
 
-            if (hasXWon()) return +1;
-            if (hasOWon()) return -1;
+            if (checkIfXWon()) return +1;
+            if (checkIfOWon()) return -1;
 
             List<Point> pointsAvailable = getAvailableStates();
             if (pointsAvailable.isEmpty()) return 0;
@@ -284,7 +284,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                 Point point = pointsAvailable.get(i);
 
                 if (turn == 1) { //X's turn select the highest from below minimax() call
-                    placeAMove(point, 1);
+                    makeAMove(point, 1);
                     int currentScore = minimax(depth + 1, 2);
                     scores.add(currentScore);
 
@@ -292,7 +292,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                         rootsChildrenScores.add(new PointsAndScores(currentScore, point));
 
                 } else if (turn == 2) {//O's turn select the lowest from below minimax() call
-                    placeAMove(point, 2);
+                    makeAMove(point, 2);
                     scores.add(minimax(depth + 1, 1));
                 }
                 board[point.x][point.y] = 0; //Reset this point
@@ -335,11 +335,13 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                     clearBoard();
                     temp=1;
                     Point p = new Point(rand.nextInt(3), rand.nextInt(3));
-                    placeAMove(p, 1);
+                    makeAMove(p, 1);
                     updateBoard(p,tempInverse(temp));
                 }
                 else
                 {
+                    if(temp==1)
+                        temp=2;
                     clearBoard();
                 }
             }
@@ -379,7 +381,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                 if(temp==1)
                 {
                     Point p = new Point(rand.nextInt(3), rand.nextInt(3));
-                    placeAMove(p, 1);
+                    makeAMove(p, 1);
                     updateBoard(p,tempInverse(temp));
                 }
 
@@ -410,28 +412,28 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
             if(v.getId()==one.getId())
             {
                 Point point = new Point(0, 0);
-                placeAMove(point, 2);
+                makeAMove(point, 2);
                 updateBoard(point,temp);
 
-                if(isGameOver()){
+                if(checkIfGameOver()){
                     displayResult();
                     flag=false;
                 }
 
                 if(flag)
                 {
-                    if(!isGameOver())
+                    if(!checkIfGameOver())
                     {
-                        callMinimax(0, 1);
+                        callM(0, 1);
                         for (PointsAndScores pas : rootsChildrenScores) {
                             System.out.println("Point: " + pas.point + " Score: " + pas.score);
                         }
-                        point=returnBestMove();
-                        placeAMove(point, 1);
+                        point=returnBest();
+                        makeAMove(point, 1);
                         updateBoard(point,tempInverse(temp));
 
                     }
-                    if(isGameOver()){
+                    if(checkIfGameOver()){
                         displayResult();
                     }
                 }
@@ -447,28 +449,28 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
             if(v.getId()==two.getId())
             {
                 Point point = new Point(0, 1);
-                placeAMove(point, 2);
+                makeAMove(point, 2);
                 updateBoard(point,temp);
 
-                if(isGameOver()){
+                if(checkIfGameOver()){
                     displayResult();
                     flag=false;
                 }
 
                 if(flag)
                 {
-                    if(!isGameOver())
+                    if(!checkIfGameOver())
                     {
-                        callMinimax(0, 1);
+                        callM(0, 1);
                         for (PointsAndScores pas : rootsChildrenScores) {
                             System.out.println("Point: " + pas.point + " Score: " + pas.score);
                         }
-                        point=returnBestMove();
-                        placeAMove(point, 1);
+                        point=returnBest();
+                        makeAMove(point, 1);
                         updateBoard(point,tempInverse(temp));
 
                     }
-                    if(isGameOver()){
+                    if(checkIfGameOver()){
                         displayResult();
                     }
                 }
@@ -482,28 +484,28 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
             if(v.getId()==three.getId())
             {
                 Point point = new Point(0, 2);
-                placeAMove(point, 2);
+                makeAMove(point, 2);
                 updateBoard(point,temp);
 
-                if(isGameOver()){
+                if(checkIfGameOver()){
                     displayResult();
                     flag=false;
                 }
 
                 if(flag)
                 {
-                    if(!isGameOver())
+                    if(!checkIfGameOver())
                     {
-                        callMinimax(0, 1);
+                        callM(0, 1);
                         for (PointsAndScores pas : rootsChildrenScores) {
                             System.out.println("Point: " + pas.point + " Score: " + pas.score);
                         }
-                        point=returnBestMove();
-                        placeAMove(point, 1);
+                        point=returnBest();
+                        makeAMove(point, 1);
                         updateBoard(point,tempInverse(temp));
 
                     }
-                    if(isGameOver()){
+                    if(checkIfGameOver()){
                         displayResult();
                     }
                 }
@@ -518,28 +520,28 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
             if(v.getId()==four.getId())
             {
                 Point point = new Point(1, 0);
-                placeAMove(point, 2);
+                makeAMove(point, 2);
                 updateBoard(point,temp);
 
-                if(isGameOver()){
+                if(checkIfGameOver()){
                     displayResult();
                     flag=false;
                 }
 
                 if(flag)
                 {
-                    if(!isGameOver())
+                    if(!checkIfGameOver())
                     {
-                        callMinimax(0, 1);
+                        callM(0, 1);
                         for (PointsAndScores pas : rootsChildrenScores) {
                             System.out.println("Point: " + pas.point + " Score: " + pas.score);
                         }
-                        point=returnBestMove();
-                        placeAMove(point, 1);
+                        point=returnBest();
+                        makeAMove(point, 1);
                         updateBoard(point,tempInverse(temp));
 
                     }
-                    if(isGameOver()){
+                    if(checkIfGameOver()){
                         displayResult();
                     }
                 }
@@ -553,28 +555,28 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
             if(v.getId()==five.getId())
             {
                 Point point = new Point(1, 1);
-                placeAMove(point, 2);
+                makeAMove(point, 2);
                 updateBoard(point,temp);
 
-                if(isGameOver()){
+                if(checkIfGameOver()){
                     displayResult();
                     flag=false;
                 }
 
                 if(flag)
                 {
-                    if(!isGameOver())
+                    if(!checkIfGameOver())
                     {
-                        callMinimax(0, 1);
+                        callM(0, 1);
                         for (PointsAndScores pas : rootsChildrenScores) {
                             System.out.println("Point: " + pas.point + " Score: " + pas.score);
                         }
-                        point=returnBestMove();
-                        placeAMove(point, 1);
+                        point=returnBest();
+                        makeAMove(point, 1);
                         updateBoard(point,tempInverse(temp));
 
                     }
-                    if(isGameOver()){
+                    if(checkIfGameOver()){
                         displayResult();
                     }
                 }
@@ -588,28 +590,28 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
             if(v.getId()==six.getId())
             {
                 Point point = new Point(1, 2);
-                placeAMove(point, 2);
+                makeAMove(point, 2);
                 updateBoard(point,temp);
 
-                if(isGameOver()){
+                if(checkIfGameOver()){
                     displayResult();
                     flag=false;
                 }
 
                 if(flag)
                 {
-                    if(!isGameOver())
+                    if(!checkIfGameOver())
                     {
-                        callMinimax(0, 1);
+                        callM(0, 1);
                         for (PointsAndScores pas : rootsChildrenScores) {
                             System.out.println("Point: " + pas.point + " Score: " + pas.score);
                         }
-                        point=returnBestMove();
-                        placeAMove(point, 1);
+                        point=returnBest();
+                        makeAMove(point, 1);
                         updateBoard(point,tempInverse(temp));
 
                     }
-                    if(isGameOver()){
+                    if(checkIfGameOver()){
                         displayResult();
                     }
                 }
@@ -623,28 +625,28 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
             if(v.getId()==seven.getId())
             {
                 Point point = new Point(2, 0);
-                placeAMove(point, 2);
+                makeAMove(point, 2);
                 updateBoard(point,temp);
 
-                if(isGameOver()){
+                if(checkIfGameOver()){
                     displayResult();
                     flag=false;
                 }
 
                 if(flag)
                 {
-                    if(!isGameOver())
+                    if(!checkIfGameOver())
                     {
-                        callMinimax(0, 1);
+                        callM(0, 1);
                         for (PointsAndScores pas : rootsChildrenScores) {
                             System.out.println("Point: " + pas.point + " Score: " + pas.score);
                         }
-                        point=returnBestMove();
-                        placeAMove(point, 1);
+                        point=returnBest();
+                        makeAMove(point, 1);
                         updateBoard(point,tempInverse(temp));
 
                     }
-                    if(isGameOver()){
+                    if(checkIfGameOver()){
                         displayResult();
                     }
                 }
@@ -658,28 +660,28 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
             if(v.getId()==eight.getId())
             {
                 Point point = new Point(2, 1);
-                placeAMove(point, 2);
+                makeAMove(point, 2);
                 updateBoard(point,temp);
 
-                if(isGameOver()){
+                if(checkIfGameOver()){
                     displayResult();
                     flag=false;
                 }
 
                 if(flag)
                 {
-                    if(!isGameOver())
+                    if(!checkIfGameOver())
                     {
-                        callMinimax(0, 1);
+                        callM(0, 1);
                         for (PointsAndScores pas : rootsChildrenScores) {
                             System.out.println("Point: " + pas.point + " Score: " + pas.score);
                         }
-                        point=returnBestMove();
-                        placeAMove(point, 1);
+                        point=returnBest();
+                        makeAMove(point, 1);
                         updateBoard(point,tempInverse(temp));
 
                     }
-                    if(isGameOver()){
+                    if(checkIfGameOver()){
                         displayResult();
                     }
                 }
@@ -692,28 +694,28 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
             if(v.getId()==nine.getId())
             {
                 Point point = new Point(2, 2);
-                placeAMove(point, 2);
+                makeAMove(point, 2);
                 updateBoard(point,temp);
 
-                if(isGameOver()){
+                if(checkIfGameOver()){
                     displayResult();
                     flag=false;
                 }
 
                 if(flag)
                 {
-                    if(!isGameOver())
+                    if(!checkIfGameOver())
                     {
-                        callMinimax(0, 1);
+                        callM(0, 1);
                         for (PointsAndScores pas : rootsChildrenScores) {
                             System.out.println("Point: " + pas.point + " Score: " + pas.score);
                         }
-                        point=returnBestMove();
-                        placeAMove(point, 1);
+                        point=returnBest();
+                        makeAMove(point, 1);
                         updateBoard(point,tempInverse(temp));
 
                     }
-                    if(isGameOver()){
+                    if(checkIfGameOver()){
                         displayResult();
                     }
                 }
