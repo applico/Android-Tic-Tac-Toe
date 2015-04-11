@@ -152,15 +152,17 @@ public class MainActivity extends Activity {
 
     private void humanMove(ImageButton img, int index) {
 
-        count = count+1;
-        selectPicture(img);
-        array[index] = selected;
-        Log.v(Tag, "Move made " + index);
-        checkForWin();
+       synchronized (this) {
+           count = count + 1;
+           selectPicture(img);
+           array[index] = selected;
+           Log.v("Human Move", "Move made " + index);
+           checkForWin();
 
-        if (count < 8 ){
-            computerMove();
-        }
+           if (count < 8) {
+               computerMove();
+           }
+       }
     }
 
 
