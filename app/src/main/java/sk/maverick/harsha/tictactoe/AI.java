@@ -1,6 +1,5 @@
 package sk.maverick.harsha.tictactoe;
 
-import android.util.Log;
 import android.widget.ImageButton;
 import java.util.Random;
 
