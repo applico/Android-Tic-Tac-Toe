@@ -1,0 +1,30 @@
+<resources>
+
+    <string name="app_name">Applico Tic-Tac-Toe</string>
+
+    <string name="new_game">New Game</string>
+    <string name="exit">Exit</string>
+
+    <string name="user_first">User plays first!</string>
+    <string name="user_turn">Your turn to play</string>
+    <string name="ai_turn">AI to play</string>
+
+    <string name="result_tie">Game tied!!</string>
+    <string name="result_user">You win!</string>
+    <string name="result_ai">AI won!</string>
+    <string name="one">1</string>
+    <string name="two">2</string>
+    <string name="three">3</string>
+    <string name="four">4</string>
+    <string name="five">5</string>
+    <string name="six">6</string>
+    <string name="seven">7</string>
+    <string name="eight">8</string>
+    <string name="nine">9</string>
+
+    <string name="info">Info</string>
+    <string name="user">You:  </string>
+    <string name="ties">Ties:  </string>
+    <string name="ai">AI:  </string>
+
+</resources>
