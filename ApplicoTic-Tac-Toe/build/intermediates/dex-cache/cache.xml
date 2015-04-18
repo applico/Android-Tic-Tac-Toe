@@ -2,32 +2,32 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\Ankit\Desktop\k\ApplicoTic-Tac-Toe\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
+        jar="D:\Dropbox\MyNewAndroid\Android-Tic-Tac-Toe\ApplicoTic-Tac-Toe\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
+        <dex dex="D:\Dropbox\MyNewAndroid\Android-Tic-Tac-Toe\ApplicoTic-Tac-Toe\app\build\intermediates\pre-dexed\debug\classes-3f286cced502ef23bcb84de9e2581a4edbcceaa7.jar" />
+    </item>
+    <item
+        jar="D:\Dropbox\MyNewAndroid\Android-Tic-Tac-Toe\ApplicoTic-Tac-Toe\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="D:\Dropbox\MyNewAndroid\Android-Tic-Tac-Toe\ApplicoTic-Tac-Toe\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-bab2afb87d4d3849ad2d008edfb6213a8196feb8.jar" />
+    </item>
+    <item
+        jar="D:\Dropbox\MyNewAndroid\Android-Tic-Tac-Toe\ApplicoTic-Tac-Toe\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex dex="C:\Users\Ankit\Desktop\k\ApplicoTic-Tac-Toe\app\build\intermediates\pre-dexed\debug\classes-285c2b464a6da3ae879147cb199d589dfd38838b.jar" />
+        <dex dex="D:\Dropbox\MyNewAndroid\Android-Tic-Tac-Toe\ApplicoTic-Tac-Toe\app\build\intermediates\pre-dexed\debug\classes-b5812aac930d41368e705ad0e7f11c0a7ed85d9c.jar" />
     </item>
     <item
         jar="C:\Users\Ankit\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
-        <dex dex="C:\Users\Ankit\Desktop\k\ApplicoTic-Tac-Toe\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-244cdc2ce144e4fa96c7ee9b025aab5d10572ad5.jar" />
-    </item>
-    <item
-        jar="C:\Users\Ankit\Desktop\k\ApplicoTic-Tac-Toe\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="C:\Users\Ankit\Desktop\k\ApplicoTic-Tac-Toe\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-68cfc041443ad0d49cda2e36d529e501ce152afd.jar" />
-    </item>
-    <item
-        jar="C:\Users\Ankit\Desktop\k\ApplicoTic-Tac-Toe\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
-        <dex dex="C:\Users\Ankit\Desktop\k\ApplicoTic-Tac-Toe\app\build\intermediates\pre-dexed\debug\classes-f95e6b65a8d04853290d8a5dc86b5768bc587352.jar" />
+        <dex dex="D:\Dropbox\MyNewAndroid\Android-Tic-Tac-Toe\ApplicoTic-Tac-Toe\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-244cdc2ce144e4fa96c7ee9b025aab5d10572ad5.jar" />
     </item>
 
 </items>
