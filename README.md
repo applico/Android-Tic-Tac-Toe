@@ -1,6 +1,6 @@
 # Android Tic-Tac-Toe
 
-Native android application.
+A native android application.
 
 The application was developed with keeping in mind the good design
 principles of UI. The application seemlessly orients to potrait
