@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Android Tic Tac Toe</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="restart_game">Restart Game</string>
+    <string name="player_comp">comp</string>
+    <string name="player_human">human</string>
+    <string name="human_move">X</string>
+    <string name="comp_move">0</string>
+    
+
+</resources>
