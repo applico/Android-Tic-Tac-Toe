@@ -1,0 +1,152 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="@color/black"
+    tools:context="com.applico.tictactoe.MainActivity">
+
+
+    <TableLayout
+        android:id="@+id/tableLayout1"
+        android:layout_width="360dp"
+        android:layout_height="330dp"
+        android:padding="10dp" >
+
+    <TableRow
+        android:id="@+id/tableRow1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center" >
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="@string/button1"
+        android:layout_weight=".3"
+        android:id="@+id/button00"
+        android:textSize="50sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="@string/button2"
+        android:layout_weight=".3"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:id="@+id/button01"
+        android:textSize="50sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="@string/button3"
+        android:layout_weight=".3"
+        android:id="@+id/button02"
+        android:textSize="50sp"
+        android:textStyle="bold" />
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center" >
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="@string/button4"
+        android:id="@+id/button10"
+        android:layout_weight=".3"
+        android:textSize="50sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="@string/button5"
+        android:id="@+id/button11"
+        android:layout_weight=".3"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:textSize="50sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="@string/button6"
+        android:id="@+id/button12"
+        android:layout_weight=".3"
+        android:textSize="50sp"
+        android:textStyle="bold" />
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center" >
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="@string/button7"
+        android:id="@+id/button20"
+        android:layout_weight=".3"
+        android:textSize="50sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="@string/button8"
+        android:id="@+id/button21"
+        android:layout_weight=".3"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:textSize="50sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="@string/button9"
+        android:id="@+id/button22"
+        android:layout_weight=".3"
+        android:textSize="50sp"
+        android:textStyle="bold" />
+    </TableRow>
+    </TableLayout>
+
+    <TextView
+        android:id="@+id/game_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/newgame_btn"
+        android:textColor="@color/white"
+        android:layout_centerHorizontal="true"
+        android:textSize="24sp"
+        android:layout_marginBottom="20dp"
+        android:text="@string/user_turn"/>
+
+    <Button
+        android:id="@+id/newgame_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="@string/new_game"
+        android:layout_marginBottom="50dp"/>
+
+
+</RelativeLayout>
