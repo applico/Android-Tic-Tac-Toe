@@ -1,7 +1,9 @@
 package com.tevinjeffrey.tictactoe.game;
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 
@@ -11,7 +13,9 @@ import com.nineoldandroids.animation.ValueAnimator;
 import com.tevinjeffrey.tictactoe.R;
 import com.tevinjeffrey.tictactoe.customviews.ImageCellView;
 import com.tevinjeffrey.tictactoe.game.board.Board;
-import com.tevinjeffrey.tictactoe.game.board.Cell;
+import com.tevinjeffrey.tictactoe.game.board.BoardCallback;
+import com.tevinjeffrey.tictactoe.game.cell.Cell;
+import com.tevinjeffrey.tictactoe.game.cell.CellState;
 import com.tevinjeffrey.tictactoe.game.board.impl.ThreeBoard;
 import com.tevinjeffrey.tictactoe.game.players.impl.AiPlayer;
 import com.tevinjeffrey.tictactoe.game.players.Player;
@@ -29,7 +33,7 @@ import static com.nineoldandroids.view.ViewPropertyAnimator.animate;
 public class TicTacToe {
 
     private final Activity mActivity;
-    private View mBoardLayout;
+    private ViewGroup mBoardLayout;
 
     private final Player mPlayerOne;
     private final Player mPlayerTwo;
@@ -38,8 +42,7 @@ public class TicTacToe {
 
     private GameState mGameState;
     private Board mBoard;
-    private TTTGameCallback mTTTGameCallback;
-    private TTTStateCallback mTTTStateCallback;
+    private final TTTGameCallback mTTTGameCallback;
 
     private final PlayerOneTurnState mPlayerOneTurnState = new PlayerOneTurnState(this);
     private final PlayerTwoTurnState mPlayerTwoTurnState = new PlayerTwoTurnState(this);
@@ -57,9 +60,20 @@ public class TicTacToe {
         this.mTTTGameCallback = tttGameCallback;
     }
 
-    public void setBoard(View boardLayout) {
+    public void resumeGame(ViewGroup boardLayout) {
         this.mBoardLayout = boardLayout;
-        mBoard = new ThreeBoard(this, boardLayout);
+        mBoard = new ThreeBoard(mBoardCallback, boardLayout);
+        evaluateGameState();
+    }
+
+    public void newGame(ViewGroup boardLayout) {
+        this.mBoardLayout = boardLayout;
+        mBoard = new ThreeBoard(mBoardCallback, boardLayout);
+        mBoard.clear();
+    }
+
+    private void evaluateGameState() {
+        getBoard().evaluate();
     }
 
     public Board getBoard() {
@@ -67,8 +81,6 @@ public class TicTacToe {
     }
 
     public void start() {
-        setGameState(mNewGameState);
-
         //Chooses the starting user randomly.
         Random rand = new Random();
         int randUser = rand.nextInt(2);
@@ -81,28 +93,78 @@ public class TicTacToe {
 
     public void setGameState(GameState gameState) {
         this.mGameState = gameState;
-        notifyStateCallback(gameState);
         if (gameState instanceof PlayerOneTurnState) {
             setCurrentPlayer(getPlayerOne());
             gameNotification(getPlayerOne().getPlayerName() + " turn.");
-            checkIfAiShouldPlay(getPlayerOne());
+            checkIfAiTurn();
         } else if (gameState instanceof PlayerTwoTurnState){
             setCurrentPlayer(getPlayerTwo());
             gameNotification(getPlayerTwo().getPlayerName() + " turn.");
-            checkIfAiShouldPlay(getPlayerTwo());
-        } else if (gameState instanceof EndGameState) {
-            Player winner = mBoard.getWinner();
-            if (winner != null) {
-                animateWinner(mBoard.getWinningLine(mBoard.getCells()));
-                notifyWinner(winner);
-                gameNotification(winner.getPlayerName() + " wins.");
-            } else if (mBoard.isDraw()) {
-                notifyDraw();
-                gameNotification("It's a draw!");
+            checkIfAiTurn();
+        }
 
+    }
+
+    private final BoardCallback mBoardCallback = new BoardCallback() {
+        @Override
+        public void onPlayerPick(Board board, int pickIndex) {
+            if (getGameState() instanceof PlayerOneTurnState)
+                getGameState().playerOnePick(board, pickIndex);
+            else if (getGameState() instanceof  PlayerTwoTurnState){
+                getGameState().playerTwoPick(board, pickIndex);
             }
         }
 
+        @Override
+        public void onCellInvoke(CellState player) {
+            //TODO play game sounds here
+            evaluateGameState();
+        }
+
+        @Override
+        public void onWinner(Cell[] winningCells) {
+            animateWinner(winningCells);
+
+            Player currentPlayer = getCurrentPlayer();
+            if (currentPlayer == null) {
+                currentPlayer = getPlayer(winningCells[0].getState());
+            }
+
+            notifyWinner(currentPlayer);
+            gameNotification(currentPlayer.getPlayerName() + " wins.");
+
+            setGameState(getEndGameState());
+        }
+
+        @Override
+        public void nextPlayer() {
+            if (getGameState() instanceof PlayerOneTurnState) {
+                setGameState(getPlayerTwoTurnState());
+            } else if (getGameState() instanceof PlayerTwoTurnState) {
+                setGameState(getPlayerOneTurnState());
+            }
+        }
+
+        @Override
+        public void onClear() {
+            setGameState(getNewGameState());
+        }
+
+        @Override
+        public void onDraw() {
+            notifyDraw();
+            gameNotification("It's a draw!");
+
+            setGameState(getEndGameState());
+        }
+
+    };
+
+    private void checkIfAiTurn() {
+        if (isAiTurn(currentPlayer)) {
+            playAi((AiPlayer) currentPlayer);
+
+        }
     }
 
     private void animateWinner(Cell[] winningTriple) {
@@ -132,15 +194,40 @@ public class TicTacToe {
         currentPlayer = player;
     }
 
-    private void checkIfAiShouldPlay(Player player) {
-        if (player instanceof AiPlayer) {
-            int pickIndex = ((AiPlayer)player).decide(this);
-            mBoard.clickCell(mBoard.getCells().get(pickIndex - 1));
-        }
+    public Player getCurrentPlayer() {
+        return currentPlayer;
     }
 
-    public void setTTTStateCallback(TTTStateCallback mTTTStateCallback) {
-        this.mTTTGameCallback = mTTTGameCallback;
+    private boolean isAiTurn(Player player) {
+        return player instanceof AiPlayer;
+    }
+
+    private void playAi(final AiPlayer player) {
+        final Thread aiThread = new Thread() {
+            @Override
+            public void run() {
+                Log.d("TicTacToe", "Ai pre decision: ");
+                try {
+                    sleep(300);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                player.decide(TicTacToe.this, new AiPlayer.AiCallback() {
+                    @Override
+                    public void onComplete(final int pickIndex) {
+                        if (mActivity != null) {
+                            mActivity.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    mBoard.checkPlayerPick(mBoard.getCells().get(pickIndex - 1));
+                                }
+                            });
+                        }
+                    }
+                });
+            }
+        };
+        aiThread.start();
     }
 
     public void notifyWinner(Player player) {
@@ -167,20 +254,6 @@ public class TicTacToe {
         }
     }
 
-    private void notifyStateCallback(GameState gameState) {
-        if (mTTTStateCallback != null) {
-            if (gameState instanceof PlayerOneTurnState) {
-               mTTTStateCallback.onPlayerOneState(getPlayerOne());
-            } else if (gameState instanceof PlayerTwoTurnState){
-                mTTTStateCallback.onPlayerTwoSate(getPlayerTwo());
-            } else if (gameState instanceof NewGameState) {
-                mTTTStateCallback.onNewGameState(currentPlayer);
-            } else if (gameState instanceof EndGameState) {
-                mTTTStateCallback.onEndGameState(currentPlayer);
-            }
-        }
-    }
-
     public void gameNotification(CharSequence message) {
         notifyMessage(message);
     }
@@ -191,6 +264,10 @@ public class TicTacToe {
 
     public Player getPlayerTwo() {
         return mPlayerTwo;
+    }
+
+    private Player getPlayer(CellState cellState) {
+        return cellState.equals(CellState.PLAYER_ONE)? getPlayerOne():getPlayerTwo();
     }
 
     public PlayerOneTurnState getPlayerOneTurnState() {
@@ -218,7 +295,7 @@ public class TicTacToe {
                 } else if (getGameState() instanceof PlayerTwoTurnState) {
                     getGameState().playerTwoNewGame();
                 }
-                setBoard(mBoardLayout);
+                newGame(mBoardLayout);
                 start();
             }
         });
@@ -226,15 +303,12 @@ public class TicTacToe {
 
     public interface TTTGameCallback {
         void onWinner(Player player);
+
         void onMessage(CharSequence message);
+
         void onDraw();
+
         void onPlayerChange(Player currentPlayer);
     }
 
-    public interface TTTStateCallback {
-        void onNewGameState(Player player);
-        void onEndGameState(Player player);
-        void onPlayerOneState(Player player);
-        void onPlayerTwoSate(Player player);
-    }
 }

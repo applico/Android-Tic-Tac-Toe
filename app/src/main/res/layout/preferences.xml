@@ -14,7 +14,8 @@
         android:paddingRight="?android:attr/scrollbarSize"
         android:clickable="true"
         android:id="@+id/prefPlayerOne"
-        tools:ignore="RtlSymmetry">
+        tools:ignore="RtlSymmetry"
+        android:baselineAligned="false">
 
         <RelativeLayout
             android:layout_width="0dp"
@@ -31,7 +32,7 @@
                 android:ellipsize="marquee"
                 android:fadingEdge="horizontal"
                 android:singleLine="true"
-                android:text="@string/player_one_name"
+                android:text="@string/default_player_one_name"
                 android:textColor="@color/white"
                 android:textSize="@dimen/preference_primary_text" />
 

@@ -4,8 +4,9 @@ import com.tevinjeffrey.tictactoe.game.TicTacToe;
 import com.tevinjeffrey.tictactoe.game.board.Board;
 import static com.tevinjeffrey.tictactoe.game.board.Board.BoardUtils;
 
-import com.tevinjeffrey.tictactoe.game.board.Cell;
-import com.tevinjeffrey.tictactoe.game.board.impl.CellImpl;
+import com.tevinjeffrey.tictactoe.game.cell.Cell;
+import com.tevinjeffrey.tictactoe.game.cell.CellState;
+import com.tevinjeffrey.tictactoe.game.cell.impl.CellImpl;
 import com.tevinjeffrey.tictactoe.game.players.Player;
 import com.tevinjeffrey.tictactoe.game.states.impl.PlayerOneTurnState;
 import com.tevinjeffrey.tictactoe.game.states.impl.PlayerTwoTurnState;
@@ -31,7 +32,7 @@ public class AiPlayer extends Player {
     }
 
     //TODO move all of AI off of the UI thread
-    public int decide(TicTacToe game) {
+    public void decide(TicTacToe game, AiCallback callback) {
         choice = 0;
         whoAmI(game);
         board = game.getBoard();
@@ -48,23 +49,25 @@ public class AiPlayer extends Player {
                 && (isBoardEmpty(board.getCells()) || !perfectAi)) {
             int randCorner = rand.nextInt(4);
             int[] corners = {1, 3, 7, 9};
-            return corners[randCorner];
+            notifyCallback(callback, corners[randCorner]);
+
+            //Choose center if not already chosen.
+        } else if (!isCenterChecked(board.getCells()) && aiMadeNoMoves(board.getCells()) && isCenterChecked(board.getCells())) {
+            notifyCallback(callback,  5);
+        } else {
+            //Minimax algorithm to maximize the AI's winning potential.
+            minimax(board.getCells(), 0, ai.getPlayerId());
+            notifyCallback(callback, choice);
         }
-
-        //Choose center if not already chosen.
-        if (!isCenterChecked(board.getCells()) && aiMadeNoMoves(board.getCells()) && isCenterChecked(board.getCells())) {
-            return 5;
-        }
-
-        //Minimax algorithm to maximize the AI's winning potential.
-        minimax(board.getCells(), 0, ai.getPlayerId());
-
-
-        return choice;
     }
 
+    private void notifyCallback(AiCallback callback, int pickIndex) {
+        if (callback != null) {
+            callback.onComplete(pickIndex);
+        }
+    }
     //http://neverstopbuilding.com/minimax
-    private int minimax(final List<Cell> cells, int depth, Cell.CellState state) {
+    private int minimax(final List<Cell> cells, int depth, CellState state) {
         if (board.isGameOver(cells)) {
             return score(cells, depth);
         }
@@ -131,7 +134,7 @@ public class AiPlayer extends Player {
         for(Cell cell : cells) {
             if (cell.getIndex() == 1 || cell.getIndex() == 3
                     || cell.getIndex() == 7 || cell.getIndex() == 9) {
-                if (cell.getState() != Cell.CellState.BLANK) {
+                if (cell.getState() != CellState.BLANK) {
                     cornerChecked = true;
                 }
             }
@@ -206,6 +209,10 @@ public class AiPlayer extends Player {
     public String toString() {
         return "AiPlayer{" +
                 "choice=" + choice + "}";
+    }
+
+    public interface AiCallback {
+        void onComplete(int pickIndex);
     }
 
 }

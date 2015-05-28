@@ -4,25 +4,26 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.orhanobut.hawk.Hawk;
-import com.tevinjeffrey.tictactoe.GameActivity;
 import com.tevinjeffrey.tictactoe.game.board.Board;
-import com.tevinjeffrey.tictactoe.game.board.Cell;
+import com.tevinjeffrey.tictactoe.game.cell.CellState;
+
+import static com.tevinjeffrey.tictactoe.TTTApp.*;
 
 public class Player implements Parcelable {
 
     private String playerName;
     private int playerScore;
-    private Cell.CellState playerId;
+    private CellState playerId;
 
     public void pick(Board board, int pickIndex) {
-        board.pick(pickIndex);
+        board.invokeCell(getPlayerId(), pickIndex);
     }
 
-    public Cell.CellState getPlayerId() {
+    public CellState getPlayerId() {
         return playerId;
     }
 
-    public void setPlayerId(Cell.CellState playerId) {
+    public void setPlayerId(CellState playerId) {
         this.playerId = playerId;
     }
 
@@ -31,39 +32,39 @@ public class Player implements Parcelable {
     }
 
     public void savePlayerName() {
-        if (getPlayerId().equals(Cell.CellState.PLAYER_ONE)) {
-            Hawk.put(GameActivity.PREF_PLAYER_ONE_NAME, playerName);
+        if (getPlayerId().equals(CellState.PLAYER_ONE)) {
+            Hawk.put(PREF_PLAYER_ONE_NAME, playerName);
         } else {
-            Hawk.put(GameActivity.PREF_PLAYER_TWO_NAME, playerName);
+            Hawk.put(PREF_PLAYER_TWO_NAME, playerName);
         }
     }
 
     public String getPlayerName() {
         String name;
-        if (getPlayerId().equals(Cell.CellState.PLAYER_ONE)) {
-            name = Hawk.get(GameActivity.PREF_PLAYER_ONE_NAME, playerName);
+        if (getPlayerId().equals(CellState.PLAYER_ONE)) {
+            name = Hawk.get(PREF_PLAYER_ONE_NAME, playerName);
         } else {
-            name = Hawk.get(GameActivity.PREF_PLAYER_TWO_NAME, playerName);
+            name = Hawk.get(PREF_PLAYER_TWO_NAME, playerName);
         }
         return name;    
     }
 
     public int getPlayerScore() {
         int score;
-        if (getPlayerId().equals(Cell.CellState.PLAYER_ONE)) {
-            score = Hawk.get(GameActivity.PREF_PLAYER_ONE_SCORE, playerScore);
+        if (getPlayerId().equals(CellState.PLAYER_ONE)) {
+            score = Hawk.get(PREF_PLAYER_ONE_SCORE, playerScore);
         } else {
-            score = Hawk.get(GameActivity.PREF_PLAYER_TWO_SCORE, playerScore);
+            score = Hawk.get(PREF_PLAYER_TWO_SCORE, playerScore);
         }
         return score;
     }
 
     public void setPlayerScore(int playerScore) {
         this.playerScore = playerScore;
-        if (getPlayerId().equals(Cell.CellState.PLAYER_ONE)) {
-            Hawk.put(GameActivity.PREF_PLAYER_ONE_SCORE, playerScore);
+        if (getPlayerId().equals(CellState.PLAYER_ONE)) {
+            Hawk.put(PREF_PLAYER_ONE_SCORE, playerScore);
         } else {
-            Hawk.put(GameActivity.PREF_PLAYER_TWO_SCORE, playerScore);
+            Hawk.put(PREF_PLAYER_TWO_SCORE, playerScore);
         }
     }
 
@@ -87,7 +88,7 @@ public class Player implements Parcelable {
         this.playerName = in.readString();
         this.playerScore = in.readInt();
         int tmpPlayerId = in.readInt();
-        this.playerId = tmpPlayerId == -1 ? null : Cell.CellState.values()[tmpPlayerId];
+        this.playerId = tmpPlayerId == -1 ? null : CellState.values()[tmpPlayerId];
     }
 
     public static final Creator<Player> CREATOR = new Creator<Player>() {

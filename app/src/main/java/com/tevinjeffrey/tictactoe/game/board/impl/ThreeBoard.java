@@ -3,16 +3,15 @@ package com.tevinjeffrey.tictactoe.game.board.impl;
 import android.view.View;
 
 import com.tevinjeffrey.tictactoe.R;
-import com.tevinjeffrey.tictactoe.game.TicTacToe;
 import com.tevinjeffrey.tictactoe.game.board.Board;
-import com.tevinjeffrey.tictactoe.game.board.Cell;
-import com.tevinjeffrey.tictactoe.customviews.ImageCellView;
-import com.tevinjeffrey.tictactoe.game.players.Player;
-import com.tevinjeffrey.tictactoe.game.states.impl.EndGameState;
-import com.tevinjeffrey.tictactoe.game.states.impl.NewGameState;
-import com.tevinjeffrey.tictactoe.game.states.impl.PlayerOneTurnState;
-import com.tevinjeffrey.tictactoe.game.states.impl.PlayerTwoTurnState;
-import static com.tevinjeffrey.tictactoe.game.board.Cell.CellState.BLANK;
+import com.tevinjeffrey.tictactoe.game.board.BoardCallback;
+import com.tevinjeffrey.tictactoe.game.cell.Cell;
+import com.tevinjeffrey.tictactoe.game.cell.CellState;
+
+import static com.tevinjeffrey.tictactoe.game.cell.CellState.BLANK;
+import static com.tevinjeffrey.tictactoe.game.cell.CellState.PLAYER_ONE;
+import static com.tevinjeffrey.tictactoe.game.cell.CellState.PLAYER_TWO;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -23,6 +22,7 @@ import butterknife.OnClick;
 //An implementation of a 3x3 board.
 public class ThreeBoard implements Board {
 
+    private final BoardCallback mBoardCallback;
     @InjectViews({R.id.cell_1, R.id.cell_2, R.id.cell_3, R.id.cell_4, R.id.cell_5, R.id.cell_6, R.id.cell_7, R.id.cell_8, R.id.cell_9})
     List<Cell> cells;
 
@@ -30,11 +30,8 @@ public class ThreeBoard implements Board {
         return cells;
     }
 
-
-    private final TicTacToe tictactoe;
-
-    public ThreeBoard(TicTacToe ticTacToe, View boardLayout) {
-        this.tictactoe = ticTacToe;
+    public ThreeBoard(BoardCallback callback, View boardLayout) {
+        this.mBoardCallback = callback;
         setupCells(boardLayout);
     }
 
@@ -43,10 +40,6 @@ public class ThreeBoard implements Board {
 
         int i = 1;
         for (Cell cell : getCells()) {
-            if (tictactoe.getGameState() instanceof NewGameState || tictactoe
-                    .getGameState() instanceof EndGameState) {
-                cell.setState(BLANK);
-            }
             cell.setIndex(i);
             int value;
             switch(i) {
@@ -87,45 +80,55 @@ public class ThreeBoard implements Board {
         }
     }
 
-
+    //Fires the click on the current state state of the game. From there the game will
+    // determine what to do.
     @OnClick({R.id.cell_1, R.id.cell_2, R.id.cell_3, R.id.cell_4, R.id.cell_5,
             R.id.cell_6, R.id.cell_7, R.id.cell_8, R.id.cell_9})
-    public void onClick(Cell cell) {
-        clickCell(cell);
+    public void checkPlayerPick(Cell cell) {
+        mBoardCallback.onPlayerPick(this, cell.getIndex() - 1);
     }
 
     @Override
-    public void pick(int pickIndex) {
-        if (tictactoe.getGameState() instanceof PlayerOneTurnState) {
-            cells.get(pickIndex).setState(ImageCellView.CellState.PLAYER_ONE);
-        } else if (tictactoe.getGameState() instanceof PlayerTwoTurnState) {
-            cells.get(pickIndex).setState(ImageCellView.CellState.PLAYER_TWO);
+    public void invokeCell(CellState who, int pickIndex) {
+        if (who.equals(PLAYER_ONE)) {
+            cells.get(pickIndex).setState(PLAYER_ONE);
+            mBoardCallback.onCellInvoke(who);
+        } else if (who.equals(PLAYER_TWO)) {
+            cells.get(pickIndex).setState(PLAYER_TWO);
+            mBoardCallback.onCellInvoke(who);
         }
-    }
 
-    @Override
-    public void clickCell(Cell cell) {
-        if (tictactoe.getGameState() instanceof PlayerOneTurnState)
-            tictactoe.getGameState().playerOnePick(this, cell.getIndex() - 1);
-        else if (tictactoe.getGameState() instanceof  PlayerTwoTurnState){
-            tictactoe.getGameState().playerTwoPick(this, cell.getIndex() - 1);
-        }
     }
 
     public boolean isGameOver(List<Cell> cells) {
         return BoardUtils.isCellsFull(cells) || getWinner(getWinningLine(cells)) != null;
     }
 
+    @Override
+    public void evaluate() {
+        CellState winner = getWinner();
 
-    public Player getWinner() {
+        if(winner != null) {
+            mBoardCallback.onWinner(getWinningLine(getCells()));
+        } else if (isDraw()) {
+            mBoardCallback.onDraw();
+        } else {
+            mBoardCallback.nextPlayer();
+        }
+    }
+
+    @Override
+    public void clear() {
+        for (Cell cell : getCells()) {
+            cell.setState(BLANK);
+        }
+        mBoardCallback.onClear();
+    }
+
+    public CellState getWinner() {
         Cell[] winningTriple = getWinningLine(getCells());
         if (winningTriple != null) {
-            Cell winningCell = winningTriple[0];
-            if (winningCell.isPlayerOne()) {
-                return tictactoe.getPlayerOne();
-            } else if (winningCell.isPlayerTwo()){
-                return tictactoe.getPlayerTwo();
-            }
+            return winningTriple[0].getState();
         }
         return null;
     }
@@ -136,14 +139,9 @@ public class ThreeBoard implements Board {
                 getWinner(getWinningLine(getCells())) == null;
     }
 
-    private Player getWinner(Cell[] winningTriple) {
+    private static CellState getWinner(Cell[] winningTriple) {
         if (winningTriple != null) {
-            Cell winningCell = winningTriple[0];
-            if (winningCell.isPlayerOne()) {
-                return tictactoe.getPlayerOne();
-            } else if (winningCell.isPlayerTwo()){
-                return tictactoe.getPlayerTwo();
-            }
+            return winningTriple[0].getState();
         }
         return null;
     }
@@ -177,9 +175,9 @@ public class ThreeBoard implements Board {
     *   4 |  9 |  2 |
     * --------------| All rows, columns and diagonals must equal 15
     * */
-    private boolean isWinningTriple(Cell[] cells) {
+    private static boolean isWinningTriple(Cell[] cells) {
         int score = 0;
-        Cell.CellState temp = cells[0].getState();
+        CellState temp = cells[0].getState();
 
         for (Cell c : cells) {
             if (c.isTaken()) {

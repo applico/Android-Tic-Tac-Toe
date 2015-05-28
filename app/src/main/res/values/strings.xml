@@ -5,11 +5,10 @@
     <string name="settings">settings</string>
     <string name="player_one">Player One</string>
     <string name="player_two">Player Two</string>
-    <string name="input">Enter a name</string>
     <string name="enter_player_two_name">Enter Player Two name</string>
     <string name="enter_player_one_name">Enter Player One name</string>
-    <string name="player_one_name">Tevin</string>
-    <string name="player_two_name">Jarvis</string>
+    <string name="default_player_one_name">Hal</string>
+    <string name="default_player_two_name">Jarvis</string>
     <string name="configuration">Configuration</string>
     <string name="difficulty">Difficulty</string>
     <string name="difficulty_summary">Impossible to win</string>

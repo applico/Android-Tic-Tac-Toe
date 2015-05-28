@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:baselineAligned="false">
 
     <RelativeLayout
         android:id="@+id/header"
@@ -23,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-condensed"
-            android:text="@string/player_one_name"
+            android:text="@string/default_player_one_name"
             android:textColor="#ffffff"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -36,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-condensed"
-            android:text="@string/player_two_name"
+            android:text="@string/default_player_two_name"
             android:textColor="#ffffff"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -149,7 +150,7 @@
                             android:layout_height="fill_parent"
                             android:background="@color/primary"
                             android:layout_weight="1"
-                            android:layout_marginRight="@dimen/cell_margin">
+                            android:layout_marginEnd="@dimen/cell_margin">
 
                             <com.tevinjeffrey.tictactoe.customviews.ImageCellView
                                 android:id="@+id/cell_1"
@@ -166,7 +167,7 @@
                             android:layout_height="fill_parent"
                             android:background="@drawable/item_background_selector"
                             android:layout_weight="1"
-                            android:layout_marginRight="@dimen/cell_margin">
+                            android:layout_marginEnd="@dimen/cell_margin">
 
 
                             <com.tevinjeffrey.tictactoe.customviews.ImageCellView
@@ -210,7 +211,7 @@
                             android:layout_height="fill_parent"
                             android:background="@drawable/item_background_selector"
                             android:layout_weight="1"
-                            android:layout_marginRight="@dimen/cell_margin">
+                            android:layout_marginEnd="@dimen/cell_margin">
 
                             <com.tevinjeffrey.tictactoe.customviews.ImageCellView
                                 android:id="@+id/cell_4"
@@ -226,7 +227,7 @@
                             android:layout_height="fill_parent"
                             android:background="@drawable/item_background_selector"
                             android:layout_weight="1"
-                            android:layout_marginRight="@dimen/cell_margin">
+                            android:layout_marginEnd="@dimen/cell_margin">
 
 
                             <com.tevinjeffrey.tictactoe.customviews.ImageCellView
@@ -263,20 +264,21 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:orientation="horizontal"
-                        android:weightSum="3">
+                        android:weightSum="3"
+                        android:baselineAligned="false">
 
                         <com.tevinjeffrey.tictactoe.customviews.SquareLayout
                             android:layout_width="fill_parent"
                             android:layout_height="fill_parent"
                             android:background="@drawable/item_background_selector"
                             android:layout_weight="1"
-                            android:layout_marginRight="@dimen/cell_margin">
+                            android:layout_marginEnd="@dimen/cell_margin">
 
                             <com.tevinjeffrey.tictactoe.customviews.ImageCellView
                                 android:id="@+id/cell_7"
                                 android:layout_width="fill_parent"
                                 android:layout_height="fill_parent"
-                                android:layout_marginRight="@dimen/cell_margin"
+                                android:layout_marginEnd="@dimen/cell_margin"
                                 android:src="@mipmap/ic_blank"
                                 android:background="@drawable/item_background_selector" />
                         </com.tevinjeffrey.tictactoe.customviews.SquareLayout>
@@ -286,13 +288,13 @@
                             android:layout_height="fill_parent"
                             android:background="@drawable/item_background_selector"
                             android:layout_weight="1"
-                            android:layout_marginRight="@dimen/cell_margin">
+                            android:layout_marginEnd="@dimen/cell_margin">
 
                             <com.tevinjeffrey.tictactoe.customviews.ImageCellView
                                 android:id="@+id/cell_8"
                                 android:layout_width="fill_parent"
                                 android:layout_height="fill_parent"
-                                android:layout_marginRight="@dimen/cell_margin"
+                                android:layout_marginEnd="@dimen/cell_margin"
                                 android:src="@mipmap/ic_blank"
                                 android:background="@drawable/item_background_selector" />
 

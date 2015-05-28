@@ -1,6 +1,7 @@
 package com.tevinjeffrey.tictactoe.game.board;
 
-import com.tevinjeffrey.tictactoe.game.players.Player;
+import com.tevinjeffrey.tictactoe.game.cell.Cell;
+import com.tevinjeffrey.tictactoe.game.cell.CellState;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,19 +10,24 @@ import java.util.List;
 // 4x4 and 6x6
 public interface Board {
 
-    void pick(int pickIndex);
+    void invokeCell(CellState who, int pickIndex);
 
-    void clickCell(Cell cell);
-
-    Player getWinner();
+    CellState getWinner();
 
     boolean isDraw();
 
+    //No static interface method in java 7 :(
     Cell[] getWinningLine(List<Cell> cells);
 
     List<Cell> getCells();
 
     boolean isGameOver(List<Cell> cells);
+
+    void evaluate();
+
+    void clear();
+
+    void checkPlayerPick(Cell cell);
 
     abstract class BoardUtils {
         public static List<Cell> getPossibleMoves(List<Cell> cells) {

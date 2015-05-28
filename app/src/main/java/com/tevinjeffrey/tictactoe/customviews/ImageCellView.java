@@ -13,11 +13,12 @@ import android.widget.ImageView;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.tevinjeffrey.tictactoe.R;
-import com.tevinjeffrey.tictactoe.game.board.Cell;
+import com.tevinjeffrey.tictactoe.game.cell.Cell;
+import com.tevinjeffrey.tictactoe.game.cell.CellState;
 
-import static com.tevinjeffrey.tictactoe.game.board.Cell.CellState.BLANK;
-import static com.tevinjeffrey.tictactoe.game.board.Cell.CellState.PLAYER_ONE;
-import static com.tevinjeffrey.tictactoe.game.board.Cell.CellState.PLAYER_TWO;
+import static com.tevinjeffrey.tictactoe.game.cell.CellState.BLANK;
+import static com.tevinjeffrey.tictactoe.game.cell.CellState.PLAYER_ONE;
+import static com.tevinjeffrey.tictactoe.game.cell.CellState.PLAYER_TWO;
 
 // ImageViews and like buttons but are a bit more flexible with it comes displaying the image.
 // The image is also divorced from the background which is a big plus when it comes to animating the

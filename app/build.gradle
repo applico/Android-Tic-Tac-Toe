@@ -26,7 +26,7 @@ dependencies {
     //Boilerplate reduction
     compile 'com.jakewharton:butterknife:6.1.0' //Injects views from layout resources
     compile 'com.afollestad:material-dialogs:0.7.4.2' //Dialogs
-    compile 'com.orhanobut:hawk:1.10' //Key-value store. Doesn't work.
+    compile 'com.orhanobut:hawk:1.10' //Key-value store.
 
     //Animations
     compile 'com.nineoldandroids:library:2.4.0'

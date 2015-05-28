@@ -1,10 +1,11 @@
-package com.tevinjeffrey.tictactoe.game.board.impl;
+package com.tevinjeffrey.tictactoe.game.cell.impl;
 
-import com.tevinjeffrey.tictactoe.game.board.Cell;
+import com.tevinjeffrey.tictactoe.game.cell.Cell;
+import com.tevinjeffrey.tictactoe.game.cell.CellState;
 
-import static com.tevinjeffrey.tictactoe.game.board.Cell.CellState.BLANK;
-import static com.tevinjeffrey.tictactoe.game.board.Cell.CellState.PLAYER_ONE;
-import static com.tevinjeffrey.tictactoe.game.board.Cell.CellState.PLAYER_TWO;
+import static com.tevinjeffrey.tictactoe.game.cell.CellState.BLANK;
+import static com.tevinjeffrey.tictactoe.game.cell.CellState.PLAYER_ONE;
+import static com.tevinjeffrey.tictactoe.game.cell.CellState.PLAYER_TWO;
 
 //A generic cell implementation. It's used in the "possible games" evaluated by the AI's minimax
 // algorithm.

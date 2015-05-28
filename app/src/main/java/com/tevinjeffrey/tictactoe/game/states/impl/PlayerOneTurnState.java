@@ -39,16 +39,6 @@ public class PlayerOneTurnState implements GameState {
         if(!board.getCells().get(pickIndex).isTaken()) {
             ticTacToe.getPlayerOne().pick(board, pickIndex);
 
-            if (board.getWinner() != null) {
-                ticTacToe.gameNotification(board.getWinner().getPlayerName() + " wins.");
-                ticTacToe.setGameState(ticTacToe.getEndGameState());
-            } else if (board.isDraw()) {
-                ticTacToe.gameNotification("It's a draw!");
-                ticTacToe.setGameState(ticTacToe.getEndGameState());
-            } else {
-                //Change state to next player if an evaluation determines Player 1 did not win their turn.
-                ticTacToe.setGameState(ticTacToe.getPlayerTwoTurnState());
-            }
         } else {
             ticTacToe.gameNotification("That slot is taken");
             ticTacToe.setGameState(ticTacToe.getPlayerOneTurnState());
