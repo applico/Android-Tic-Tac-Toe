@@ -12,6 +12,7 @@ import android.widget.ImageView;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.nineoldandroids.animation.Animator;
 import com.tevinjeffrey.tictactoe.R;
 import com.tevinjeffrey.tictactoe.game.cell.Cell;
 import com.tevinjeffrey.tictactoe.game.cell.CellState;
@@ -98,7 +99,27 @@ public class ImageCellView extends ImageView implements Cell {
 
         switch (cellState) {
             case BLANK:
-                setImageResource(R.mipmap.ic_blank);
+                YoYo.with(Techniques.TakingOff).duration(250).interpolate(new DecelerateInterpolator()).withListener(new Animator.AnimatorListener() {
+                    @Override
+                    public void onAnimationStart(Animator animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        setImageResource(R.mipmap.ic_blank);
+                    }
+
+                    @Override
+                    public void onAnimationCancel(Animator animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animator animation) {
+
+                    }
+                }).playOn(this);
                 break;
             case PLAYER_ONE:
                 YoYo.with(Techniques.Landing).duration(250).interpolate(new DecelerateInterpolator()).playOn(this);

@@ -389,7 +389,7 @@ public class SettingsPanel {
 
                                         @Override
                                         public void onAnimationEnd(com.nineoldandroids.animation.Animator animation) {
-                                            listener.onAnimationRepeat(null);
+                                            listener.onAnimationEnd(null);
                                         }
 
                                         @Override
