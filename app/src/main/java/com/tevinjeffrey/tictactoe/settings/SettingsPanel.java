@@ -306,8 +306,8 @@ public class SettingsPanel {
         //For reasons unknown a view with visibility "GONE" is not enough to prevent
         // clicks from getting through
         private void disableUi(boolean visible) {
-            mBoardLayout.setEnabled(!visible);
-            mPreferencesLayout.setEnabled(visible);
+            mBoardLayout.setClickable(!visible);
+            mPreferencesLayout.setClickable(visible);
         }
 
 
