@@ -63,7 +63,7 @@ public class TicTacToe {
     public void resumeGame(ViewGroup boardLayout) {
         this.mBoardLayout = boardLayout;
         mBoard = new ThreeBoard(mBoardCallback, boardLayout);
-        evaluateGameState();
+        evaluateGameState(true);
     }
 
     public void newGame(ViewGroup boardLayout) {
@@ -72,8 +72,8 @@ public class TicTacToe {
         mBoard.clear();
     }
 
-    private void evaluateGameState() {
-        getBoard().evaluate();
+    private void evaluateGameState(boolean resumedGame) {
+        getBoard().evaluate(resumedGame);
     }
 
     public Board getBoard() {
@@ -118,7 +118,7 @@ public class TicTacToe {
         @Override
         public void onCellInvoke(CellState player) {
             //TODO play game sounds here
-            evaluateGameState();
+            evaluateGameState(false);
         }
 
         @Override
@@ -206,7 +206,6 @@ public class TicTacToe {
         final Thread aiThread = new Thread() {
             @Override
             public void run() {
-                Log.d("TicTacToe", "Ai pre decision: ");
                 try {
                     sleep(300);
                 } catch (InterruptedException e) {

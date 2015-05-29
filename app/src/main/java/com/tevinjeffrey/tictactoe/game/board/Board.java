@@ -23,7 +23,7 @@ public interface Board {
 
     boolean isGameOver(List<Cell> cells);
 
-    void evaluate();
+    void evaluate(boolean resumedGame);
 
     void clear();
 

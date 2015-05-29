@@ -105,14 +105,14 @@ public class ThreeBoard implements Board {
     }
 
     @Override
-    public void evaluate() {
+    public void evaluate(boolean resumedGame) {
         CellState winner = getWinner();
 
         if(winner != null) {
             mBoardCallback.onWinner(getWinningLine(getCells()));
         } else if (isDraw()) {
             mBoardCallback.onDraw();
-        } else {
+        } else if (!resumedGame){
             mBoardCallback.nextPlayer();
         }
     }
