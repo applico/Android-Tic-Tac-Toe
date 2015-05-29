@@ -25,10 +25,17 @@ import com.tevinjeffrey.tictactoe.settings.SettingsEnum;
 import com.tevinjeffrey.tictactoe.settings.SettingsListener;
 import com.tevinjeffrey.tictactoe.settings.SettingsPanel;
 
-import static com.tevinjeffrey.tictactoe.TTTApp.*;
-
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+
+import static com.tevinjeffrey.tictactoe.TTTApp.LOCAL;
+import static com.tevinjeffrey.tictactoe.TTTApp.PREF_IMPOSSIBLE_DIFFICULTY;
+import static com.tevinjeffrey.tictactoe.TTTApp.PREF_PLAYER_ONE;
+import static com.tevinjeffrey.tictactoe.TTTApp.PREF_PLAYER_ONE_NAME;
+import static com.tevinjeffrey.tictactoe.TTTApp.PREF_PLAYER_ONE_SCORE;
+import static com.tevinjeffrey.tictactoe.TTTApp.PREF_PLAYER_TWO;
+import static com.tevinjeffrey.tictactoe.TTTApp.PREF_PLAYER_TWO_NAME;
+import static com.tevinjeffrey.tictactoe.TTTApp.PREF_PLAYER_TWO_SCORE;
 
 
 public class GameActivity extends Activity {
@@ -45,11 +52,6 @@ public class GameActivity extends Activity {
     TextView stateDisplay;
     @InjectView(R.id.retry)
     Button btnRetry;
-    @InjectView(R.id.btn_settings)
-    ImageView btnSettings;
-    @InjectView(R.id.preferencesLayout)
-    View preferencesLayout;
-
 
     private Player playerOne;
     private Player playerTwo;

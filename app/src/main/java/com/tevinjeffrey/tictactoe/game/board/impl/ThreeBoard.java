@@ -8,16 +8,16 @@ import com.tevinjeffrey.tictactoe.game.board.BoardCallback;
 import com.tevinjeffrey.tictactoe.game.cell.Cell;
 import com.tevinjeffrey.tictactoe.game.cell.CellState;
 
-import static com.tevinjeffrey.tictactoe.game.cell.CellState.BLANK;
-import static com.tevinjeffrey.tictactoe.game.cell.CellState.PLAYER_ONE;
-import static com.tevinjeffrey.tictactoe.game.cell.CellState.PLAYER_TWO;
-
 import java.util.Arrays;
 import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectViews;
 import butterknife.OnClick;
+
+import static com.tevinjeffrey.tictactoe.game.cell.CellState.BLANK;
+import static com.tevinjeffrey.tictactoe.game.cell.CellState.PLAYER_ONE;
+import static com.tevinjeffrey.tictactoe.game.cell.CellState.PLAYER_TWO;
 
 //An implementation of a 3x3 board.
 public class ThreeBoard implements Board {
