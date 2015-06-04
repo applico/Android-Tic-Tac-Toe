@@ -8,12 +8,11 @@ import java.util.Random;
  */
 public class AI {
 
-    MainActivity object = new MainActivity();
-    boolean flag = false;
+    private boolean flag = false;
 
     public int aiMove(char array[], int count){
 
-    int index=0;
+     int index=0;
 
         if(count<3) {
                     while (true) {
@@ -167,7 +166,7 @@ public class AI {
 
     }
 
-    public int attackMove(char array[]){
+    private int attackMove(char array[]){
         int index = 0;
 
         if(array[0] == 'o' & array[1] == 'o' & array[2] == 'i')
