@@ -24,7 +24,7 @@ public class MainActivity extends Activity {
     boolean gameDone = false;
 
     AI computer;
-    Scorer score = new Scorer();
+    
     
      Handler handle = new Handler() {
         @Override
@@ -423,12 +423,13 @@ public class MainActivity extends Activity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+        
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.score) {
 
-            Toast.makeText(this, "Player's score " + score.player, Toast.LENGTH_SHORT ).show();
-            Toast.makeText(this, "AI's score " + score.AI, Toast.LENGTH_SHORT ).show();
+            Toast.makeText(this, "Player's score " + new Scorer().getPlayerScore(), Toast.LENGTH_SHORT ).show();
+            Toast.makeText(this, "AI's score " + new Scorer().getAIScore(), Toast.LENGTH_SHORT ).show();
             return true;
         }
 
