@@ -1,0 +1,88 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity"
+    android:background="#8AE65C">
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:gravity="center">
+        <TableRow android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/row_00"
+                android:layout_height="@dimen/box"
+                android:layout_width="@dimen/box"
+                android:src="@drawable/blank"></ImageButton>
+            <ImageButton
+                android:id="@+id/row_01"
+                android:layout_height="@dimen/box"
+                android:layout_width="@dimen/box"
+
+                ></ImageButton>
+            <ImageButton
+                android:id="@+id/row_02"
+                android:layout_height="@dimen/box"
+                android:layout_width="@dimen/box"
+
+                ></ImageButton>
+        </TableRow>
+
+        <TableRow android:gravity="center">
+            <ImageButton
+                android:id="@+id/row_10"
+                android:layout_height="@dimen/box"
+                android:layout_width="@dimen/box"
+
+                ></ImageButton>
+            <ImageButton
+                android:id="@+id/row_11"
+                android:layout_height="@dimen/box"
+                android:layout_width="@dimen/box"
+                ></ImageButton>
+            <ImageButton
+                android:id="@+id/row_12"
+                android:layout_height="@dimen/box"
+                android:layout_width="@dimen/box"
+
+                ></ImageButton>
+        </TableRow>
+
+        <TableRow android:gravity="center">
+            <ImageButton
+                android:id="@+id/row_20"
+                android:layout_height="@dimen/box"
+                android:layout_width="@dimen/box"
+
+                ></ImageButton>
+            <ImageButton
+                android:id="@+id/row_21"
+                android:layout_height="@dimen/box"
+                android:layout_width="@dimen/box"
+
+                ></ImageButton>
+            <ImageButton
+                android:id="@+id/row_22"
+                android:layout_height="@dimen/box"
+                android:layout_width="@dimen/box"
+                ></ImageButton>
+        </TableRow>
+
+    </TableLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/newgame"
+        android:id="@+id/button"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>

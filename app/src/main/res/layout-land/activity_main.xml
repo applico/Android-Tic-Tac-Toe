@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#8AE65C">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"></LinearLayout>
+
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:layout_marginStart="160dp"
+        android:layout_marginLeft="160dp">
+
+        <TableRow android:gravity="center"
+            >
+            <ImageButton
+                android:id="@+id/row_00"
+                android:layout_height="@dimen/box_land"
+                android:layout_width="@dimen/box_land"
+
+                ></ImageButton>
+            <ImageButton
+                android:id="@+id/row_01"
+                android:layout_height="@dimen/box_land"
+                android:layout_width="@dimen/box_land"
+
+                ></ImageButton>
+            <ImageButton
+                android:id="@+id/row_02"
+                android:layout_height="@dimen/box_land"
+                android:layout_width="@dimen/box_land"
+
+                ></ImageButton>
+        </TableRow>
+
+        <TableRow android:gravity="center"
+            android:layout_width="wrap_content">
+            <ImageButton
+                android:id="@+id/row_10"
+                android:layout_height="@dimen/box_land"
+                android:layout_width="@dimen/box_land"
+
+                ></ImageButton>
+            <ImageButton
+                android:id="@+id/row_11"
+                android:layout_height="@dimen/box_land"
+                android:layout_width="@dimen/box_land"
+                ></ImageButton>
+            <ImageButton
+                android:id="@+id/row_12"
+                android:layout_height="@dimen/box_land"
+                android:layout_width="@dimen/box_land"
+
+                ></ImageButton>
+        </TableRow>
+
+        <TableRow android:gravity="center">
+            <ImageButton
+                android:id="@+id/row_20"
+                android:layout_height="@dimen/box_land"
+                android:layout_width="@dimen/box_land"
+
+                ></ImageButton>
+            <ImageButton
+                android:id="@+id/row_21"
+                android:layout_height="@dimen/box_land"
+                android:layout_width="@dimen/box_land"
+
+                ></ImageButton>
+            <ImageButton
+                android:id="@+id/row_22"
+                android:layout_height="@dimen/box_land"
+                android:layout_width="@dimen/box_land"
+                ></ImageButton>
+
+
+        </TableRow>
+    </TableLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/newgame"
+        android:id="@+id/button"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="50dp"
+
+     />
+
+</LinearLayout>
