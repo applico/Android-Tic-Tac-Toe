@@ -166,7 +166,7 @@ public class ThreeBoard implements Board {
     }
 
 
-    //http://rowdy.msudenver.edu/~gordona/cs1050/progs/tictactoermccsc.pdf
+    //http://rowdy.msudenver.edu/~gordona/cs1050/progs/
     /* -------------|
     *   8 |  1 |  6 |
     * ----|----|----|
