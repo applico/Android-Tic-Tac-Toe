@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:minHeight="?android:attr/listPreferredItemHeight"
+        android:paddingRight="?android:attr/scrollbarSize"
+        android:clickable="true"
+        android:id="@+id/prefPlayerOne"
+        tools:ignore="RtlSymmetry"
+        android:baselineAligned="false">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dip"
+            android:layout_marginLeft="15dip"
+            android:layout_marginRight="6dip"
+            android:layout_marginTop="6dip"
+            android:layout_weight="1">
+
+            <TextView android:id="@+id/changePlayerOneTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="marquee"
+                android:fadingEdge="horizontal"
+                android:singleLine="true"
+                android:text="@string/default_player_one_name"
+                android:textColor="@color/white"
+                android:textSize="@dimen/preference_primary_text" />
+
+            <TextView android:id="@+id/changePlayerOneSummary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/changePlayerOneTitle"
+                android:layout_below="@+id/changePlayerOneTitle"
+                android:maxLines="4"
+                android:text="@string/player_one"
+                android:textColor="@color/primary_light"
+                android:textSize="@dimen/preference_secondary_text" />
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:minHeight="?android:attr/listPreferredItemHeight"
+        android:paddingRight="?android:attr/scrollbarSize"
+        android:clickable="true"
+        android:id="@+id/prefPlayerTwo"
+        android:baselineAligned="false"
+        tools:ignore="RtlSymmetry">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dip"
+            android:layout_marginLeft="15dip"
+            android:layout_marginRight="6dip"
+            android:layout_marginTop="6dip"
+            android:layout_weight="1" >
+
+            <TextView
+                android:id="@+id/changePlayerTwoTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="marquee"
+                android:fadingEdge="horizontal"
+                android:singleLine="true"
+                android:text="@string/player_two"
+                android:textColor="@color/white"
+                android:textSize="@dimen/preference_primary_text" />
+
+            <TextView
+                android:id="@+id/changePlayerTwoSummary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/changePlayerTwoTitle"
+                android:layout_below="@+id/changePlayerTwoTitle"
+                android:maxLines="4"
+                android:text="@string/player_two"
+                android:textColor="@color/primary_light"
+                android:textSize="@dimen/preference_secondary_text" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:minHeight="?android:attr/listPreferredItemHeight"
+        android:paddingRight="?android:attr/scrollbarSize"
+        android:clickable="true"
+        android:id="@+id/prefConfig"
+        android:baselineAligned="false"
+        tools:ignore="RtlSymmetry">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dip"
+            android:layout_marginLeft="15dip"
+            android:layout_marginRight="6dip"
+            android:layout_marginTop="6dip"
+            android:layout_weight="1">
+
+            <TextView android:id="@+id/configTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="marquee"
+                android:fadingEdge="horizontal"
+                android:singleLine="true"
+                android:text="@string/configuration"
+                android:textColor="@color/white"
+                android:textSize="@dimen/preference_primary_text" />
+
+            <TextView android:id="@+id/configSummary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/configTitle"
+                android:layout_below="@+id/configTitle"
+                android:maxLines="4"
+                tools:text="Tevin vs AI"
+                android:textColor="@color/primary_light"
+                android:textSize="@dimen/preference_secondary_text" />
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:minHeight="?android:attr/listPreferredItemHeight"
+        android:paddingRight="?android:attr/scrollbarSize"
+        android:baselineAligned="false"
+        tools:ignore="RtlSymmetry">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dip"
+            android:layout_marginLeft="15dip"
+            android:layout_marginRight="6dip"
+            android:layout_marginTop="6dip"
+            android:layout_weight="1">
+
+            <TextView android:id="@+id/changeDifficultyTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="marquee"
+                android:fadingEdge="horizontal"
+                android:singleLine="true"
+                android:text="@string/difficulty"
+                android:textColor="@color/white"
+                android:textSize="@dimen/preference_primary_text" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/changeDifficultyTitle"
+                android:layout_below="@+id/changeDifficultyTitle"
+                android:maxLines="4"
+                android:text="@string/difficulty_summary"
+                android:textColor="@color/primary_light"
+                android:textSize="@dimen/preference_secondary_text" />
+
+        </RelativeLayout>
+
+        <!-- Preference should place its actual preference widget here. -->
+        <LinearLayout android:id="@+id/widget_frame"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="vertical" >
+
+            <Switch
+                android:id="@+id/changeDifficultySwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
+

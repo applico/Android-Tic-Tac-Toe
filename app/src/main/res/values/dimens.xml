@@ -1,0 +1,10 @@
+<resources>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="cell_margin">8dp</dimen>
+
+    <dimen name="preference_primary_text">16sp</dimen>
+    <dimen name="preference_secondary_text">11sp</dimen>
+
+</resources>

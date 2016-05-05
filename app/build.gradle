@@ -1,0 +1,34 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        applicationId "com.tevinjeffrey.tictactoe"
+        minSdkVersion 16
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:23.2.1'
+
+    //Boilerplate reduction
+    compile 'com.jakewharton:butterknife:6.1.0' //Injects views from layout resources
+    compile('com.github.afollestad.material-dialogs:core:0.8.5.7@aar') {
+        transitive = true
+    }
+    compile 'com.orhanobut:hawk:1.10' //Key-value store.
+
+    //Animations
+    compile 'com.nineoldandroids:library:2.4.0'
+    compile 'com.daimajia.easing:library:1.0.1@aar'
+    compile 'com.daimajia.androidanimations:library:1.1.3@aar'
+
+    //Custom made view to handle picking Strings.
+    compile project(':stringpicker')
+}
